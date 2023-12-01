@@ -34,6 +34,7 @@ jobs:
           deploymentName: coHackAcrDeployment${{github.run_number}}
           region: ${{ env.AZURE_LOCATION }}
           parameters: runNumber=${{github.run_number}}
+          failOnStdErr: false
       - name: Get ACR Login Credentials
         run: |
           echo "ACR_USERNAME=${{ steps.deployStep.outputs.acrUsername }}" >> $GITHUB_ENV
