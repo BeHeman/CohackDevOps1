@@ -37,7 +37,7 @@ jobs:
           failOnStdErr: false
       - name: Get ACR Login Credentials
         run: |
-          echo "ACR_USERNAME=${{ steps.deployStep.outputs.acrUsername }}" >> $GITHUB_ENV
+          echo "ACR_USERNAME=$(az acr credential show -n {{ steps.deployStep.outputs.acrUsername }} --query username)" >> $GITHUB_ENV
           echo "ACR_PASS=$(az acr credential show -n ${{ steps.deployStep.outputs.acrUsername }} --query passwords[0].value)" >> $GITHUB_ENV
     outputs:
       ACR_USERNAME: ${{ env.ACR_USERNAME }}
